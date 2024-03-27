@@ -7,4 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".IHM.MainActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <Button
+      android:id="@+id/appel"
+      android:layout_width="123dp"
+      android:layout_height="49dp"
+      android:text="Appel élève"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.222" />
+
+  <Button
+      android:id="@+id/recapitulatif"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Répapitulatif"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.504"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.382" />
+
+  <Button
+      android:id="@+id/judokas"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Les Judokas"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.546" />
+</androidx.constraintlayout.widget.ConstraintLayout>

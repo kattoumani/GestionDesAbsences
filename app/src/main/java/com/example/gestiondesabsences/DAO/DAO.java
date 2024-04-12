@@ -1,7 +1,7 @@
 package com.example.gestiondesabsences.DAO;
 
 /**
- * Le pattern DAO (Data Access Object) permet de faire le lien entre les objets et le la base de données.
+ * Le pattern DAO (Data Access Object) permet de faire le mapping entre les objets et la base de données.
  */
 
 public abstract class DAO<T> {

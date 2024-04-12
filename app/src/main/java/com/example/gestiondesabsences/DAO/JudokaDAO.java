@@ -12,7 +12,7 @@ public class JudokaDAO extends DAO<Judoka> {
     private SQLiteGestionAbsences dbGestionAbsences;
 
     // Déclarations des outils nécessaires à la base
-    private static final String TABLE_MATIERE = "JUDOKA";
+    private static final String TABLE_JUDOKA = "JUDOKA";
     private static final String COL_ID_JUDOKA = "IDJUDOKA";
     private static final String COL_NOM = "NOM";
     private static final String COL_PRENOM = "PRENOM";

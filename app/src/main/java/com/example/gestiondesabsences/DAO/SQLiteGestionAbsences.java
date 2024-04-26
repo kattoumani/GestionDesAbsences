@@ -38,7 +38,6 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
      * @param oldVersion
      * @param newVersion
      */
-
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 
     }

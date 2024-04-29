@@ -29,7 +29,17 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
      * @param db
      */
     public void onCreate(SQLiteDatabase db){
-
+    try{
+        db.execSQL("DROP TABLE IF EXISTS categorie");
+        db.execSQL("DROP TABLE IF EXISTS judoka");
+        db.execSQL("DROP TABLE IF EXISTS cours");
+        db.execSQL("CREATE TABLE categorie(id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(100))");
+        db.execSQL("CREATE TABLE judoka(id INTEGER PRIMARY KEY AUTOINCREMENT, nom VARCHAR(100), " +
+                "prenom VARCHAR(100), numeroTelephone VARCHAR(100), dateNaissance DATE)");
+        db.execSQL("CREATE TABLE cours(id INTEGER PRIMARY KEY AUTOINCREMENT, datePresence DATE)");
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -39,7 +49,7 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
      * @param newVersion
      */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-
+        onCreate(db);
     }
 
 }

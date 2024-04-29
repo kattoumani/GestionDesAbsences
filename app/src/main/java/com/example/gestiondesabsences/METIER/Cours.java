@@ -1,4 +1,4 @@
-package com.example.gestiondesabsences.IHM.METIER;
+package com.example.gestiondesabsences.METIER;
 
 import java.util.Date;
 

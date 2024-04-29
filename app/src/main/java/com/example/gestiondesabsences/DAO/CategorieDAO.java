@@ -1,6 +1,12 @@
 package com.example.gestiondesabsences.DAO;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.example.gestiondesabsences.METIER.Categorie;
+
+import java.util.ArrayList;
 
 /**
  *  Permet de faire le mapping entre les objets de la classe métier Catégorie et la base de données.
@@ -19,6 +25,14 @@ public class CategorieDAO extends DAO<Categorie> {
      */
     @Override
     public void insert(Categorie ca) {
+        SQLiteDatabase db = dbGestionAbsences.getWritableDatabase();
+        ContentValues valeursIns = new ContentValues();
+        valeursIns.put("libelle", "Eveils");
+        valeursIns.put("libelle", "Poussinets");
+        valeursIns.put("libelle", "Poussins");
+        long id = db.insert("categorie", null, valeursIns);
+        System.out.println("clé pour le libellé : " + id);
+        db.close();
 
     }
 
@@ -54,7 +68,34 @@ public class CategorieDAO extends DAO<Categorie> {
      * Retourne la liste de toutes les catégories enregistré dans la base de données
      * @return      La liste de toutes les catégories dans un tableau
      */
-    /*public ArrayList<Categorie> read(){
+    public ArrayList<Categorie> read(){
+        Cursor curseurCategorie;
+        ArrayList<Categorie> listeDesCategories;
+        Categorie uneCategorie;
+        int idCategorie;
+        String libelleCategorie;
 
-    }*/
+        SQLiteDatabase db = dbGestionAbsences.getWritableDatabase();
+        // Requete
+        curseurCategorie = db.query(TABLE_CATEGORIE, null, null, null, null, null, COL_LIBELLE);
+        // Initialisation de la liste des catégories
+        listeDesCategories = new ArrayList<Categorie>();
+        // Parcours du curseur
+        curseurCategorie.moveToFirst();
+        while(!curseurCategorie.isAfterLast()){
+            // Récupération des données de l'enregistrement
+            idCategorie = curseurCategorie.getInt(0);
+            libelleCategorie = curseurCategorie.getString(1);
+            // Ajout de la matière dans la liste
+            uneCategorie = new Categorie(idCategorie, libelleCategorie);
+            listeDesCategories.add(uneCategorie);
+            curseurCategorie.moveToNext();
+        }
+        curseurCategorie.close();
+        //close();
+        return listeDesCategories;
+
+
+
+    }
 }

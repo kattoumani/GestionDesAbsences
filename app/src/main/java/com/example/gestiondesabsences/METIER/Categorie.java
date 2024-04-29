@@ -1,10 +1,16 @@
-package com.example.gestiondesabsences.IHM.METIER;
+package com.example.gestiondesabsences.METIER;
 
 public class Categorie {
+    int id;
     String libelle;
 
-    public Categorie(String libelle) {
+    public Categorie(int id, String libelle) {
+        this.id = id;
         this.libelle = libelle;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getLibelle() {
@@ -18,6 +24,7 @@ public class Categorie {
     @Override
     public String toString() {
         return "Categorie{" +
+                "id='" + id + '\'' +
                 "libelle='" + libelle + '\'' +
                 '}';
     }

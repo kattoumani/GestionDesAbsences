@@ -1,6 +1,7 @@
 package com.example.gestiondesabsences.DAO;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,12 +13,31 @@ import java.util.ArrayList;
  *  Permet de faire le mapping entre les objets de la classe métier Catégorie et la base de données.
  */
 public class CategorieDAO extends DAO<Categorie> {
-    private SQLiteGestionAbsences dbGestionAbsences;
 
     // Déclarations des outils nécessaires à la base
     private static final String TABLE_CATEGORIE = "CATEGORIE";
     private static final String COL_ID_CATEGORIE = "IDCATEGORIE";
     private static final String COL_LIBELLE = "LIBELLE";
+    private SQLiteGestionAbsences dbGestionAbsences;
+    private SQLiteDatabase db;
+
+    /**
+     * Constructeur de la classe CategorieDAO
+     * @param       context Accéder aux ressources et classes spécifiques de l'application
+     */
+    public CategorieDAO(Context context){
+        dbGestionAbsences = new SQLiteGestionAbsences(context);
+    }
+
+    public void open(){
+        dbGestionAbsences.getWritableDatabase();
+    }
+
+    public void close(){
+        dbGestionAbsences.close();
+    }
+
+
 
     /**
      * Insertion d'une catégorie dans la base de données
@@ -25,14 +45,14 @@ public class CategorieDAO extends DAO<Categorie> {
      */
     @Override
     public void insert(Categorie ca) {
-        SQLiteDatabase db = dbGestionAbsences.getWritableDatabase();
-        ContentValues valeursIns = new ContentValues();
-        valeursIns.put("libelle", "Eveils");
-        valeursIns.put("libelle", "Poussinets");
-        valeursIns.put("libelle", "Poussins");
-        long id = db.insert("categorie", null, valeursIns);
+        open();
+        ContentValues laCategorie = new ContentValues();
+        laCategorie.put("libelle", "Eveils");
+        laCategorie.put("libelle", "Poussinets");
+        laCategorie.put("libelle", "Poussins");
+        long id = db.insert("categorie", null, laCategorie);
         System.out.println("clé pour le libellé : " + id);
-        db.close();
+        close();
 
     }
 

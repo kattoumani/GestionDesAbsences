@@ -3,6 +3,7 @@ package com.example.gestiondesabsences.DAO;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Définition de la classe enfant SQLiteOpenHelper, la classe se nomme SQLIteGestionAbsences
@@ -40,6 +41,7 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
         } catch(Exception e){
             e.printStackTrace();
         }
+        Log.v("oncreate", "BDD créer");
     }
 
     /**

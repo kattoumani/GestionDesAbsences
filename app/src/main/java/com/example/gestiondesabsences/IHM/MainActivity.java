@@ -1,7 +1,10 @@
 package com.example.gestiondesabsences.IHM;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +14,19 @@ import com.example.gestiondesabsences.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAppel, btnRecapitulatif, btnGestion;
+    private Button btnAppel, btnRecapitulatif, btnGestion, btnQuitter;
     Intent AppelActivity, RecapitulatifActivity, GestionActivity;
+    private RecyclerView rvLesCategories;
 
+    /**
+     * Listener pour quitter l'application
+     */
+    private View.OnClickListener quitter = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Quitter();
+        }
+    };
     /**
      * Vue de l'appel élève
      */
@@ -36,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
     private View.OnClickListener gestion = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -53,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btnAppel.setOnClickListener(appel);
         btnRecapitulatif.setOnClickListener(recapitulatif);
         btnGestion.setOnClickListener(gestion);
+        btnQuitter.setOnClickListener(quitter);
     }
 
     /**
@@ -62,5 +75,21 @@ public class MainActivity extends AppCompatActivity {
        btnAppel = (Button) findViewById(R.id.btnAppel);
        btnRecapitulatif = (Button) findViewById(R.id.btnRecapitulatifJudokas);
        btnGestion = (Button) findViewById(R.id.btnGestionJudokas);
+       btnQuitter = (Button) findViewById(R.id.btnQuitter);
+    }
+
+    private void Quitter() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setMessage("Voulez vous vraiment quitter ?");
+        alertDialogBuilder.setTitle("Confirmation");
+
+        alertDialogBuilder
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Non", null)
+                .show();
     }
 }

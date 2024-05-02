@@ -45,7 +45,7 @@ public class CoursDAO extends DAO<Cours> {
      * @param       id L'identifiant d'un cours
      * @return      L'identifiant d'un cours
      */
-    /*public Categorie read(long id){
+    /*public Cours read(long id){
 
     }*/
 

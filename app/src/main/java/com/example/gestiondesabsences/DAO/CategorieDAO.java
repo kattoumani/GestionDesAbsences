@@ -95,7 +95,7 @@ public class CategorieDAO extends DAO<Categorie> {
         int idCategorie;
         String libelleCategorie;
 
-        SQLiteDatabase db = dbGestionAbsences.getWritableDatabase();
+        open();
         // Requete
         curseurCategorie = db.query(TABLE_CATEGORIE, null, null, null, null, null, COL_LIBELLE);
         // Initialisation de la liste des catégories
@@ -112,9 +112,8 @@ public class CategorieDAO extends DAO<Categorie> {
             curseurCategorie.moveToNext();
         }
         curseurCategorie.close();
-        //close();
+        close();
         return listeDesCategories;
-
 
 
     }

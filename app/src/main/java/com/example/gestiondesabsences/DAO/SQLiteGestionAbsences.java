@@ -31,13 +31,22 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
      */
     public void onCreate(SQLiteDatabase db){
     try{
-        db.execSQL("DROP TABLE IF EXISTS categorie");
-        db.execSQL("DROP TABLE IF EXISTS judoka");
-        db.execSQL("DROP TABLE IF EXISTS cours");
-        db.execSQL("CREATE TABLE categorie(id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(100))");
-        db.execSQL("CREATE TABLE judoka(id INTEGER PRIMARY KEY AUTOINCREMENT, nom VARCHAR(100), " +
-                "prenom VARCHAR(100), numeroTelephone VARCHAR(100), dateNaissance DATE)");
-        db.execSQL("CREATE TABLE cours(id INTEGER PRIMARY KEY AUTOINCREMENT, datePresence DATE)");
+        db.execSQL("DROP TABLE IF EXISTS CATEGORIE");
+
+        db.execSQL("DROP TABLE IF EXISTS JUDOKA"); // Création de la table judoka
+        db.execSQL("DROP TABLE IF EXISTS COURS");
+        db.execSQL("CREATE TABLE CATEGORIE(IDCATEGORIE INTEGER PRIMARY KEY AUTOINCREMENT, LIBELLE VARCHAR(100))");
+        // Insertion Categorie
+        db.execSQL("INSERT INTO CATEGORIE(COL_ID_CATEGORIE, COL_LIBELLE) values (1, 'Eveils')");
+        db.execSQL("INSERT INTO CATEGORIE(COL_ID_CATEGORIE, COL_LIBELLE) values (1, 'Poussinets')");
+        db.execSQL("INSERT INTO CATEGORIE(COL_ID_CATEGORIE, COL_LIBELLE) values (1, 'Poussins')");
+        Log.v("insertion", "Insertion des categories");
+
+        // Création de la table judoka
+        db.execSQL("CREATE TABLE JUDOKA(IDJUDOKA INTEGER PRIMARY KEY AUTOINCREMENT, NOM VARCHAR(100), " +
+                "PRENOM VARCHAR(100), NUMERO VARCHAR(100), DATENAISSANCE DATE)");
+        db.execSQL("CREATE TABLE COURS(IDCOURS INTEGER PRIMARY KEY AUTOINCREMENT, DATEPRESENCE DATE)"); // Création de la table cours
+
         } catch(Exception e){
             e.printStackTrace();
         }

@@ -66,11 +66,10 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.View
     @Override
     public int getItemCount() {
         Log.v("nb", String.valueOf(categories.size()));
-
         return categories.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView libelle;
 
         public ViewHolder(View itemView){

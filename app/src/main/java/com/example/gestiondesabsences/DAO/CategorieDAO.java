@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.gestiondesabsences.METIER.Categorie;
 
@@ -30,7 +31,7 @@ public class CategorieDAO extends DAO<Categorie> {
     }
 
     public void open(){
-        dbGestionAbsences.getWritableDatabase();
+        db = dbGestionAbsences.getWritableDatabase();
     }
 
     public void close(){
@@ -53,7 +54,6 @@ public class CategorieDAO extends DAO<Categorie> {
         long id = db.insert("categorie", null, laCategorie);
         System.out.println("clé pour le libellé : " + id);
         close();
-
     }
 
     /**
@@ -98,6 +98,7 @@ public class CategorieDAO extends DAO<Categorie> {
         open();
         // Requete
         curseurCategorie = db.query(TABLE_CATEGORIE, null, null, null, null, null, COL_LIBELLE);
+        Log.v("curseur", "Curseur categorie : " + curseurCategorie);
         // Initialisation de la liste des catégories
         listeDesCategories = new ArrayList<Categorie>();
         // Parcours du curseur

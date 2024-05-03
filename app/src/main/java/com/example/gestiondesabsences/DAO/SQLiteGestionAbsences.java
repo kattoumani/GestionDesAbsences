@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class SQLiteGestionAbsences extends SQLiteOpenHelper {
     // Version de la base de données
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 6;
     // Nom de la base de données
     private static final String DATABASE_NAME = "GestionDesAbsences";
     // Contexte
@@ -31,15 +31,15 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
      */
     public void onCreate(SQLiteDatabase db){
     try{
-        db.execSQL("DROP TABLE IF EXISTS CATEGORIE");
+        db.execSQL("DROP TABLE IF EXISTS CATEGORIE");  // Drop la table categorie
+        db.execSQL("DROP TABLE IF EXISTS JUDOKA"); // Drop la table judoka
+        db.execSQL("DROP TABLE IF EXISTS COURS"); // Drop la table cours
 
-        db.execSQL("DROP TABLE IF EXISTS JUDOKA"); // Création de la table judoka
-        db.execSQL("DROP TABLE IF EXISTS COURS");
         db.execSQL("CREATE TABLE CATEGORIE(IDCATEGORIE INTEGER PRIMARY KEY AUTOINCREMENT, LIBELLE VARCHAR(100))");
         // Insertion Categorie
-        db.execSQL("INSERT INTO CATEGORIE(COL_ID_CATEGORIE, COL_LIBELLE) values (1, 'Eveils')");
-        db.execSQL("INSERT INTO CATEGORIE(COL_ID_CATEGORIE, COL_LIBELLE) values (1, 'Poussinets')");
-        db.execSQL("INSERT INTO CATEGORIE(COL_ID_CATEGORIE, COL_LIBELLE) values (1, 'Poussins')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (1, 'Eveils')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (2, 'Poussinets')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (3, 'Poussins')");
         Log.v("insertion", "Insertion des categories");
 
         // Création de la table judoka

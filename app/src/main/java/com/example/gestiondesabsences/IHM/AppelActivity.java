@@ -27,7 +27,12 @@ public class AppelActivity extends AppCompatActivity implements OnItemClickListe
         setContentView(R.layout.activity_appel);
         daoCategorie = new CategorieDAO(this);
         adapterCategorie = new CategorieAdapter(this, daoCategorie.read(), this);
+        constructeurGraphique();
         afficherCategories();
+    }
+
+    public void constructeurGraphique(){
+        rvLesCategories = (RecyclerView) findViewById(R.id.rvLesCategories);
     }
 
     private void afficherCategories(){
@@ -36,6 +41,8 @@ public class AppelActivity extends AppCompatActivity implements OnItemClickListe
         rvLesCategories.setAdapter(adapterCategorie);
 
     }
+
+
 
     @Override
     public void onItemClick(int position) {

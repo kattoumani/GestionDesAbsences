@@ -3,16 +3,22 @@ package com.example.gestiondesabsences.METIER;
 import java.util.Date;
 
 public class Judoka {
+    private int id;
     private String nom;
     private String prenom;
-    private int numeroTelephone;
+    private String numeroTelephone;
     private Date dateNaissance;
 
-    public Judoka(String nom, String prenom, int numeroTelephone, Date dateNaissance) {
+    public Judoka(int id, String nom, String prenom, String numeroTelephone, Date dateNaissance) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.numeroTelephone = numeroTelephone;
         this.dateNaissance = dateNaissance;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNom() {
@@ -31,11 +37,11 @@ public class Judoka {
         this.prenom = prenom;
     }
 
-    public int getNumeroTelephone() {
+    public String getNumeroTelephone() {
         return numeroTelephone;
     }
 
-    public void setNumeroTelephone(int numeroTelephone) {
+    public void setNumeroTelephone(String numeroTelephone) {
         this.numeroTelephone = numeroTelephone;
     }
 

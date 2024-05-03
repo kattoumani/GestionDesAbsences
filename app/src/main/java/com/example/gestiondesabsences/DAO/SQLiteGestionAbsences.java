@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class SQLiteGestionAbsences extends SQLiteOpenHelper {
     // Version de la base de données
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     // Nom de la base de données
     private static final String DATABASE_NAME = "GestionDesAbsences";
     // Contexte
@@ -45,7 +45,15 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
         // Création de la table judoka
         db.execSQL("CREATE TABLE JUDOKA(IDJUDOKA INTEGER PRIMARY KEY AUTOINCREMENT, NOM VARCHAR(100), " +
                 "PRENOM VARCHAR(100), NUMERO VARCHAR(100), DATENAISSANCE DATE)");
+        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMERO, DATENAISSANCE) values (1, 'Rey', 'Thierry', '0548211472', '1979-06-01')");
+        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMERO, DATENAISSANCE) values (2, 'Petrikov', 'Pavel', '0741271478', '1986-06-20')");
+        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMERO, DATENAISSANCE) values (3, 'Jupke', 'Peter', '0924214472', '1957-06-03')");
+
         db.execSQL("CREATE TABLE COURS(IDCOURS INTEGER PRIMARY KEY AUTOINCREMENT, DATEPRESENCE DATE)"); // Création de la table cours
+        db.execSQL("INSERT INTO COURS(IDCOURS, DATEPRESENCE) values (1, '2024-01-05')");
+        db.execSQL("INSERT INTO COURS(IDCOURS, DATEPRESENCE) values (2, '2024-02-18')");
+        db.execSQL("INSERT INTO COURS(IDCOURS, DATEPRESENCE) values (3, '2024-03-11')");
+
 
         } catch(Exception e){
             e.printStackTrace();

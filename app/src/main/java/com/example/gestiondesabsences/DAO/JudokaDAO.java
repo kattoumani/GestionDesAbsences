@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+
 import com.example.gestiondesabsences.METIER.Categorie;
 import com.example.gestiondesabsences.METIER.Judoka;
 
@@ -15,6 +16,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  *  Permet de faire le mapping entre les objets de la classe métier Judoka et la base de données.
@@ -28,9 +31,12 @@ public class JudokaDAO extends DAO<Judoka> {
     private static final String COL_NUMERO_TELEPHONE = "NUMEROTELEPHONE";
     private static final String COL_DATE_NAISSANCE = "DATENAISSANCE";
 
+    //private static final String COL_ID_CATEGORIE_JUDOKA = "IDCATEGORIEJUDOKA";
+
     private SQLiteGestionAbsences dbGestionAbsences;
     private SQLiteDatabase db;
 
+    private CategorieDAO categorieDAO;
     public JudokaDAO(Context context) {
         dbGestionAbsences = new SQLiteGestionAbsences(context);
     }
@@ -43,15 +49,22 @@ public class JudokaDAO extends DAO<Judoka> {
         dbGestionAbsences.close();
     }
 
+
     /**
      * Insertion d'un Judoka dans la base de données
      * @param       ju L'objet Judoka
      */
     public void insert(Judoka ju){
         open();
-        ContentValues leJudoka = new ContentValues();
+        ContentValues leJudoka;
+        leJudoka = new ContentValues();
+        leJudoka.put(COL_NOM, ju.getNom());
+        leJudoka.put(COL_PRENOM, ju.getPrenom());
+        leJudoka.put(COL_NUMERO_TELEPHONE, ju.getNumeroTelephone());
+        leJudoka.put(COL_DATE_NAISSANCE, ju.getDateNaissance());
+        //leJudoka.put(COL_ID_CATEGORIE_JUDOKA, ju.getCategorie().getId());
+        db.insert(TABLE_JUDOKA, null, leJudoka);
         close();
-
     }
 
     /**
@@ -60,7 +73,16 @@ public class JudokaDAO extends DAO<Judoka> {
      * @param       ju L'objet Judoka
      */
     public void update(Judoka ju){
-
+        open();
+        ContentValues leJudoka;
+        leJudoka = new ContentValues();
+        leJudoka.put(COL_NOM, ju.getNom());
+        leJudoka.put(COL_PRENOM, ju.getPrenom());
+        leJudoka.put(COL_NUMERO_TELEPHONE, ju.getNumeroTelephone());
+        leJudoka.put(COL_DATE_NAISSANCE, ju.getDateNaissance());
+        //leJudoka.put(COL_ID_CATEGORIE_JUDOKA, ju.getCategorie().getId());
+        db.update(TABLE_JUDOKA,leJudoka,COL_ID_JUDOKA+"= ?" , new String[]{Integer.toString(ju.getId())});
+        close();
     }
 
     /**
@@ -68,7 +90,9 @@ public class JudokaDAO extends DAO<Judoka> {
      * @param       ju L'objet Judoka
      */
     public void delete(Judoka ju){
-
+        open();
+        db.delete(TABLE_JUDOKA, COL_ID_JUDOKA +"= ?" , new String[]{String.valueOf(ju.getId())});
+        close();
     }
 
     /**
@@ -85,20 +109,21 @@ public class JudokaDAO extends DAO<Judoka> {
      * Retourne la liste de tous les Judokas enregistré dans la base de données
      * @return      La liste de tous les Judokas dans un tableau
      */
-    public ArrayList<Judoka> read() throws ParseException {
+    public ArrayList<Judoka> read() {
         Cursor curseurJudoka;
         ArrayList<Judoka> listeDesJudokas;
         Judoka unJudoka;
+        //Categorie laCategorie;
         int idJudoka;
         String nom;
         String prenom;
         String numeroTelephone;
         String dateNaissance;
+        //int uneCategorie;
 
         open();
         // Requete
         curseurJudoka = db.query(TABLE_JUDOKA, null, null, null, null, null, COL_NOM);
-        Log.v("curseur", "Curseur categorie : " + curseurJudoka);
         // Initialisation de la liste des catégories
         listeDesJudokas = new ArrayList<Judoka>();
         // Parcours du curseur
@@ -110,12 +135,12 @@ public class JudokaDAO extends DAO<Judoka> {
             prenom = curseurJudoka.getString(2);
             numeroTelephone = curseurJudoka.getString(3);
             dateNaissance = curseurJudoka.getString(4);
-            String dateString = dateNaissance;
-            Date dateN = new SimpleDateFormat("YYYY-mm-dd").parse(dateString);
+            //uneCategorie = curseurJudoka.getInt(5);
 
+            //laCategorie = categorieDAO.getCategorieId(uneCategorie);
 
-            // Ajout de la matière dans la liste
-            unJudoka = new Judoka(idJudoka, nom, prenom, numeroTelephone, dateN);
+            //unJudoka = new Judoka(idJudoka, nom, prenom, numeroTelephone, dateNaissance, laCategorie);
+            unJudoka = new Judoka(idJudoka, nom, prenom, numeroTelephone, dateNaissance);
             listeDesJudokas.add(unJudoka);
             curseurJudoka.moveToNext();
         }
@@ -123,6 +148,9 @@ public class JudokaDAO extends DAO<Judoka> {
         close();
         return listeDesJudokas;
     }
+
+
+
 
 
 

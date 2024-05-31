@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gestiondesabsences.METIER.Categorie;
 import com.example.gestiondesabsences.R;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.ViewHolder> {
@@ -25,6 +26,11 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.View
         this.context = context;
         this.categories = categories;
         this.leClic = leClic;
+    }
+
+
+    public interface OnItemClicklistener {
+        void onItemClick(int postiton);
     }
 
 
@@ -87,4 +93,6 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.View
 
         }
     }
+
+
 }

@@ -20,24 +20,14 @@ public class RecapitulatifActivity extends AppCompatActivity implements OnItemCl
     private ArrayList<Judoka> lesJudokas;
     JudokaAdapter adapterJudoka;
     JudokaDAO daoJudoka;
-    private TextView txtLibelle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recapitulatif);
-        daoJudoka = new JudokaDAO(this);
-        try {
-            adapterJudoka = new JudokaAdapter(this, daoJudoka.read(), this);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        daoJudoka = new JudokaDAO(this);adapterJudoka = new JudokaAdapter(this, daoJudoka.read(), this);
         constructeurGraphique();
-        try {
-            afficherJudokas();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        afficherJudokas();
 
     }
 
@@ -45,15 +35,15 @@ public class RecapitulatifActivity extends AppCompatActivity implements OnItemCl
         rvLesJudokas = (RecyclerView) findViewById(R.id.rvLesJudokas);
     }
 
-    public void afficherJudokas() throws ParseException {
+    public void afficherJudokas() {
         rvLesJudokas.setLayoutManager(new LinearLayoutManager(this));
         adapterJudoka = new JudokaAdapter(this, daoJudoka.read(), this);
         rvLesJudokas.setAdapter(adapterJudoka);
     }
 
-    public void onItemClick(int position){
+
+    @Override
+    public void onItemClick(int position) {
 
     }
-
-
 }

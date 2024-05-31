@@ -15,8 +15,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLesJudokas"
-        android:layout_width="670dp"
-        android:layout_height="400dp"
+        android:layout_width="932dp"
+        android:layout_height="394dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="470dp"
+            android:layout_width="263dp"
             android:layout_height="wrap_content"
             android:text="Nom" />
 
@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="402dp"
             android:layout_height="wrap_content"
             android:text="Numéro de téléphone" />
     </TableRow>

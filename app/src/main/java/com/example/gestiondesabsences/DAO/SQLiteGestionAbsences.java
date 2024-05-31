@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class SQLiteGestionAbsences extends SQLiteOpenHelper {
     // Version de la base de données
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 17;
     // Nom de la base de données
     private static final String DATABASE_NAME = "GestionDesAbsences";
     // Contexte
@@ -35,21 +35,32 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS JUDOKA"); // Drop la table judoka
         db.execSQL("DROP TABLE IF EXISTS COURS"); // Drop la table cours
 
+        // Création de la table Categorie
         db.execSQL("CREATE TABLE CATEGORIE(IDCATEGORIE INTEGER PRIMARY KEY AUTOINCREMENT, LIBELLE VARCHAR(100))");
-        // Insertion Categorie
+        // Insertion des categories
         db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (1, 'Eveils')");
         db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (2, 'Poussinets')");
         db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (3, 'Poussins')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (4, 'Benjamins')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (5, 'Minimes')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (6, 'Cadets')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (7, 'Juniors')");
+        db.execSQL("INSERT INTO CATEGORIE(IDCATEGORIE, LIBELLE) values (8, 'Seniors')");
         Log.v("insertion", "Insertion des categories");
 
         // Création de la table judoka
         db.execSQL("CREATE TABLE JUDOKA(IDJUDOKA INTEGER PRIMARY KEY AUTOINCREMENT, NOM VARCHAR(100), " +
-                "PRENOM VARCHAR(100), NUMERO VARCHAR(100), DATENAISSANCE DATE)");
-        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMERO, DATENAISSANCE) values (1, 'Rey', 'Thierry', '0548211472', '1979-06-01')");
-        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMERO, DATENAISSANCE) values (2, 'Petrikov', 'Pavel', '0741271478', '1986-06-20')");
-        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMERO, DATENAISSANCE) values (3, 'Jupke', 'Peter', '0924214472', '1957-06-03')");
+                "PRENOM VARCHAR(100), NUMEROTELEPHONE VARCHAR(100), DATENAISSANCE VARCHAR(100))");
+                /*+"IDCATEGORIEJUDOKA INTEGER, FOREIGN KEY (IDCATEGORIEJUDOKA) REFERENCES CATEGORIE(IDCATEGORIE))")*/
+        // Insertion des judokas
+        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMEROTELEPHONE, DATENAISSANCE) values (1, 'Rey', 'Thierry', '0548211472', '1979-06-01')");
+        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMEROTELEPHONE, DATENAISSANCE) values (2, 'Petrikov', 'Pavel', '0741271478', '1986-06-20')");
+        db.execSQL("INSERT INTO JUDOKA(IDJUDOKA, NOM, PRENOM, NUMEROTELEPHONE, DATENAISSANCE) values (3, 'Jupke', 'Peter', '0924214472', '1957-06-03')");
 
-        db.execSQL("CREATE TABLE COURS(IDCOURS INTEGER PRIMARY KEY AUTOINCREMENT, DATEPRESENCE DATE)"); // Création de la table cours
+
+        // Creation de la table COURS
+        db.execSQL("CREATE TABLE COURS(IDCOURS INTEGER PRIMARY KEY AUTOINCREMENT, DATEPRESENCE VARCHAR(100))"); // Création de la table cours
+        // Insertion des cours
         db.execSQL("INSERT INTO COURS(IDCOURS, DATEPRESENCE) values (1, '2024-01-05')");
         db.execSQL("INSERT INTO COURS(IDCOURS, DATEPRESENCE) values (2, '2024-02-18')");
         db.execSQL("INSERT INTO COURS(IDCOURS, DATEPRESENCE) values (3, '2024-03-11')");
@@ -58,7 +69,6 @@ public class SQLiteGestionAbsences extends SQLiteOpenHelper {
         } catch(Exception e){
             e.printStackTrace();
         }
-        Log.v("oncreate", "BDD créer");
     }
 
     /**

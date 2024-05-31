@@ -1,20 +1,32 @@
 package com.example.gestiondesabsences.METIER;
 
+
+
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.Date;
 
 public class Judoka {
-    private int id;
-    private String nom;
-    private String prenom;
-    private String numeroTelephone;
-    private Date dateNaissance;
 
-    public Judoka(int id, String nom, String prenom, String numeroTelephone, Date dateNaissance) {
+    private int id;
+
+    private String nom;
+
+    private String prenom;
+
+    private String numeroTelephone;
+
+    private String dateNaissance;
+
+    //private Categorie uneCategorie;
+
+    public Judoka(int id, String nom, String prenom, String numeroTelephone, String dateNaissance) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.numeroTelephone = numeroTelephone;
         this.dateNaissance = dateNaissance;
+        //this.uneCategorie = uneCategorie;
     }
 
     public int getId() {
@@ -45,13 +57,17 @@ public class Judoka {
         this.numeroTelephone = numeroTelephone;
     }
 
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
+
+    /*public Categorie getCategorie() {
+        return uneCategorie;
+    }*/
 
     @Override
     public String toString() {

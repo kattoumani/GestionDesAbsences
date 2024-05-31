@@ -1,7 +1,12 @@
 package com.example.gestiondesabsences.METIER;
 
+
+
+
 public class Categorie {
+
     int id;
+
     String libelle;
 
     public Categorie(int id, String libelle) {
@@ -11,6 +16,10 @@ public class Categorie {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLibelle() {

@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
        btnQuitter = (Button) findViewById(R.id.btnQuitter);
     }
 
+    /**
+     * Bouton pour quitter l'application
+     */
     private void Quitter() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setMessage("Voulez vous vraiment quitter ?");

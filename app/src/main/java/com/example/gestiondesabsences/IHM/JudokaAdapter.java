@@ -12,12 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gestiondesabsences.METIER.Judoka;
 import com.example.gestiondesabsences.R;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class JudokaAdapter extends RecyclerView.Adapter<JudokaAdapter.ViewHolder>  {
     private List<Judoka> judokas;
     private Context context;
     private OnItemClickListener leClic;
+
+
 
     public JudokaAdapter(Context context, List<Judoka> judokas, OnItemClickListener leClic){
         this.context = context;
@@ -55,7 +58,8 @@ public class JudokaAdapter extends RecyclerView.Adapter<JudokaAdapter.ViewHolder
         holder.nom.setText(judoka.getNom());
         holder.prenom.setText(judoka.getPrenom());
         holder.numeroTelephone.setText(judoka.getNumeroTelephone());
-        //holder.dateNaissance.setText((CharSequence) judoka.getDateNaissance());
+        holder.dateNaissance.setText(judoka.getDateNaissance());
+        //holder.categorie.setText(judoka.getCategorie().getLibelle());
     }
 
 
@@ -73,14 +77,16 @@ public class JudokaAdapter extends RecyclerView.Adapter<JudokaAdapter.ViewHolder
         TextView nom;
         TextView prenom;
         TextView numeroTelephone;
-        //TextView dateNaissance;
+        TextView dateNaissance;
+        TextView categorie;
 
         public ViewHolder(View itemView){
             super(itemView);
             nom = itemView.findViewById(R.id.judoka_nom);
             prenom = itemView.findViewById(R.id.judoka_pre);
             numeroTelephone = itemView.findViewById(R.id.judoka_num);
-            //dateNaissance = itemView.findViewById(R.id.judoka_dat);
+            dateNaissance = itemView.findViewById(R.id.judoka_dat);
+            //categorie = itemView.findViewById(R.id.judoka_cat);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

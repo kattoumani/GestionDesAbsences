@@ -21,6 +21,7 @@ public class CategorieDAO extends DAO<Categorie> {
     private static final String COL_LIBELLE = "LIBELLE";
     private SQLiteGestionAbsences dbGestionAbsences;
     private SQLiteDatabase db;
+    private JudokaDAO judokaDAO;
 
     /**
      * Constructeur de la classe CategorieDAO
@@ -115,7 +116,26 @@ public class CategorieDAO extends DAO<Categorie> {
         curseurCategorie.close();
         close();
         return listeDesCategories;
-
-
     }
+
+    /**
+     * Récupérer la catégorie d'un judoka
+     * @param id    Id de la catégorie du judoka
+     * @return      La categorie du judoka
+     */
+    /*public Categorie getCategorieId(int id) {
+        open();
+        Categorie categorie = null;
+        String libelle;
+        Cursor cursor = db.query(TABLE_CATEGORIE, null, "IDCATEGORIE=?", new String[]{String.valueOf(id)}, null, null, null);
+        if (cursor.moveToFirst()) {
+            id = cursor.getInt(0);
+            libelle = cursor.getString(1);
+            categorie = new Categorie(id, libelle);
+        }
+        cursor.close();
+        close();
+        return categorie;
+    }*/
+
 }

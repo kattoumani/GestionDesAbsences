@@ -3,17 +3,17 @@ package com.example.gestiondesabsences.METIER;
 import java.util.Date;
 
 public class Cours {
-    Date datePresence;
+    String datePresence;
 
-    public Cours(Date datePresence) {
+    public Cours(String datePresence) {
         this.datePresence = datePresence;
     }
 
-    public Date getDatePresence() {
+    public String getDatePresence() {
         return datePresence;
     }
 
-    public void setDatePresence(Date datePresence) {
+    public void setDatePresence(String datePresence) {
         this.datePresence = datePresence;
     }
 
